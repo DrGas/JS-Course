@@ -1,0 +1,90 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Launch a rocket!</title>
+<style type="text/css">
+#space {
+	width: 100vw;
+	text-align: center;
+	
+}
+#rocket {
+	width: inherit;
+	position: absolute;
+	bottom: 0px;
+	//background-color: orange;
+}
+</style>
+</head>
+
+<body>
+<button id="trigger">Launch the Rocket!</button>
+	<h2 id ="msg">Rocket idle.. rocket status</h2>
+<button id="landing">Come back!</button>
+<div id="space">
+  <div id="rocket"><img src="rocket.png" height="120" alt="space rocket"/></div>
+</div>
+<script type="text/javascript">
+	
+	//SCOPE - extend or range of view 
+	//rocket and trigger are global variables - everyone can access those variables 
+	var rocket = document.getElementById("rocket"); 
+	var trigger = document.getElementById("trigger");
+	var msg = document.getElementById("msg"); //storing the object msg in variable msg
+	var triggerland = document.getElementById("triggerland")
+	var pos = 0; //new global variable 
+	//Event Listener, Event Handler and function call
+	//trigger.addEventListener('click', launchRocket);
+	trigger.addEventListener('click', launchRocketAgain)
+	triggerland.addEventListener('click', landRocket);
+	
+	//function call 
+	function launchRocket() {
+		var elem = document.getElementById("rocket");   
+  		var pos = 0; //start
+		var id = setInterval(frame, 5); //how fast - function called every 5 miliseconds - runs untinl you clearInerval
+  function frame() {
+    if (pos == 350) {
+      clearInterval(id);
+    } else {
+      pos++; 
+		//like manipulating css - manipulating the style on the go
+      elem.style.top = pos + '-50px'; //top 
+      elem.style.bottom = pos + 'px'; //BOTTOM!!
+		
+    }
+  }
+
+}
+	
+	/*simpler version*/
+	function launchRocketAgain() {
+		//this takes two arguments - you can call the function right away
+		//using anonymus function - most of the ime to trigger direct function o use them in another functions or methods 
+		setInterval(function(){pos++, rocket.style.bottom = pos + 'px'}, 5);
+	//we want to put it in the function not anonymus function because we want it to happend when we click 
+		msg.innerHTML = 'Rocket launched!';
+	
+	}
+	
+	
+	/*function landRocket() {
+		var elem = document.getElementById("rocket");
+		var pos = 0;
+		var id = setInterval(land, 5);
+	function land() {
+		if (pos == 350) {
+			clearInterval(id);
+		}else {
+			pos++;
+			elem.style.top = pos + 'px';
+			elem.style.bottom = pos + '50px';
+		}
+	}
+	}*/
+	
+</script>
+
+</body>
+</html>
