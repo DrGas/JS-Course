@@ -1,0 +1,90 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Launch a Rocket (ECMA class syntax)</title>
+<script type="text/javascript">
+	
+	class Rocket {
+		
+		// The constructor method is a special method for creating and initializing an object created with a class. 
+		constructor(description, engines){
+				this.description = description;
+				this.engines = engines;
+				this.fuel = 0; //<- calculate as gallons, input is liter
+		}
+			
+		// class method
+		describeYourself(){
+			console.log('I am a ' + this.description + ' with ' + this.engines + ' engines');
+		}
+		
+		// a getter/setter pair
+		// MDN: ...binds an object's property to a function that will be called when the property is looked up.
+		get tank(){
+			return 'Tank is filled with ' + this.fuel + ' gallons.'
+		}
+		// MDN: ... binds an object's property to a function to be called when there is an attempt to set the property
+		set tank(liter){
+			// liter to gallon conversion
+			var gal = liter * 0.264172;
+			this.fuel = gal;
+		}
+		// a static class method
+		static distressSignal (){
+			console.log('Houston, we have a problem!')
+		}
+		
+	// class end	
+	}
+	
+	// INHERITANCE: Creating a sub-class extending Rocket
+	
+	class Saturn extends Rocket {
+		
+		constructor(){
+			// referring to the super class constructor "Rocket"
+			super("Saturn V", 4);
+			// additonal class property
+			this.enginetype = 'F-1';
+		}
+		// overriding the super class method
+		describeYourself(){
+			// keeping functionality from the super class method
+			super.describeYourself();
+			console.log('Enginetype: ' + this.enginetype)
+		}
+		
+		// additional class method
+		addLoad(load){
+			console.log('Load: ' + load)
+		}
+		
+	// sub class end
+	}
+	
+	
+	
+	// instantiating an object
+	
+	var coolRocket = new Rocket("Spacecraft", 4);
+	coolRocket.describeYourself();
+	// call to the getter
+	console.log(coolRocket.tank);
+	// call to the setter
+	coolRocket.tank = 20000;
+	console.log(coolRocket.tank);
+	// call to the static method
+	Rocket.distressSignal();
+	// instantiating the sub class
+	var mySaturn = new Saturn();
+	mySaturn.describeYourself();
+	mySaturn.addLoad('Lunar Roving vehicle');
+	
+	
+</script>
+</head>
+
+<body>
+</body>
+</html>
