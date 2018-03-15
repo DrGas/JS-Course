@@ -137,15 +137,3 @@ function NewGame() {
 newGame.addEventListener('click', NewGame);
 
 
-
-//var NewDice = new Dice();
-//	NewDice.rollDices();
-//	NewDice.calculate();
-//	
-//	var NewPlayer = new Player();
-//	NewPlayer.rollDices();
-//	NewPlayer.calculate();	
-//	
-//	NewDice.addEventListener('click', PlayAgain);
-//	NewPlayer.addEventListener('click', PlayAgain);
-//	newGame.addEventListener('click', PlayAgain);
